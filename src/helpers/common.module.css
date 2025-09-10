@@ -1,0 +1,12 @@
+.link {
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  
+  .active {
+    color: #3470FF;
+  }
