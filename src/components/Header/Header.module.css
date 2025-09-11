@@ -1,13 +1,21 @@
 .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100vw;
-    padding: 26px 120px;
-    background-color: #F2F4F7;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100vw;
+  padding: 26px 120px;
+  background-color: #f2f4f7;
+  margin-bottom: 4px;
 }
+.logo {
+  height: 16px;
+  width: 104px;
+}
+
 .nav {
-    display: flex;
-    align-items: center;
-    gap: 32px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  font-style: 16px;
+  line-height: 20px;
 }
