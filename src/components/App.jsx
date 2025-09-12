@@ -4,6 +4,8 @@ import { Route, Routes } from 'react-router-dom';
 import HomePage from '../pages/HomePage/HomePage.jsx';
 import CatalogPage from '../pages/CatalogPage/CatalogPage.jsx'
 import CarDetailsPage from '../pages/CarDetailsPage/CarDetailsPage.jsx';
+import CarBrands from './CarBrands/CarBrands.jsx';
+import NotFound from '../pages/NotFound/NotFound.jsx';
 import { Suspense } from 'react';
 
 const App = () => {
@@ -15,7 +17,10 @@ const App = () => {
         <Routes>
           <Route path='/' element={<HomePage />} />
           <Route path='/catalog' element={<CatalogPage />} />
-          <Route path='/catalog/:id' element={<CarDetailsPage />}  />
+          <Route path='/catalog/:id' element={<CarDetailsPage />} />
+          <Route path='/brands' element={<CarBrands />} />
+
+          <Route path='*' element={<NotFound />}/>
         </Routes>
       </Suspense>
     </div>

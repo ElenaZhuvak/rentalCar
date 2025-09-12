@@ -1,6 +1,6 @@
 const CarDetailsPage = () => {
   return (
-    <div>CarDetailsPage</div>
+    <>CarDetailsPage</>
   );
 };
 

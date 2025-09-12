@@ -6,9 +6,11 @@ import css from './Header.module.css'
 export const Header = () => {
   return (
     <header className={css.header}>
-        <svg className={css.logo}>
-            <use xlinkHref='/src/assets/symbol-defs.svg#icon-logo'></use>
-        </svg>
+        <NavLink to='/'>
+            <svg className={css.logo}>
+                <use xlinkHref='/src/assets/symbol-defs.svg#icon-logo'></use>
+            </svg>
+        </NavLink>
 
         <nav className={css.nav}>
             <NavLink className={buildLinkClass} to='/'>Home</NavLink>
