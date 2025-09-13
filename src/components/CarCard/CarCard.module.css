@@ -1,0 +1,45 @@
+.item {
+  display: flex;
+  flex-direction: column;
+  min-width: 276px;
+}
+.carImage {
+  object-fit: contain;
+  border-radius: 14px;
+}
+.cardTitle {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 12px;
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+.carTitle,
+.carPrice {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+}
+.model {
+    color: #3470ff;
+}
+
+.btn {
+  display: block;
+  margin-top: 28px;
+  text-align: center;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  border: none;
+  border-radius: 12px;
+  background: #3470ff;
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  line-height: 20px;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+.btn:hover,
+.btn:focus {
+  background-color: #0b44cd;
+}

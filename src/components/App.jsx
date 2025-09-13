@@ -1,12 +1,14 @@
-import { Header } from './Header/Header.jsx';
+
 import css from './App.module.css'
 import { Route, Routes } from 'react-router-dom';
-import HomePage from '../pages/HomePage/HomePage.jsx';
-import CatalogPage from '../pages/CatalogPage/CatalogPage.jsx'
-import CarDetailsPage from '../pages/CarDetailsPage/CarDetailsPage.jsx';
-import CarBrands from './CarBrands/CarBrands.jsx';
-import NotFound from '../pages/NotFound/NotFound.jsx';
-import { Suspense } from 'react';
+import { lazy, Suspense } from 'react';
+import { Header } from './Header/Header.jsx';
+
+const HomePage = lazy(() => import('../pages/HomePage/HomePage.jsx'));
+const CatalogPage = lazy(() => import('../pages/CatalogPage/CatalogPage.jsx'));
+const CarDetailsPage = lazy(() => import('../pages/CarDetailsPage/CarDetailsPage.jsx'));
+const CarBrands = lazy(() => import('./CarBrands/CarBrands.jsx'));
+const NotFound = lazy(() => import('../pages/NotFound/NotFound.jsx'));
 
 const App = () => {
   return (
