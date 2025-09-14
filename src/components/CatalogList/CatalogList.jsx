@@ -6,7 +6,7 @@ import LoadMoreBtn from '../LoadMoreBtn/LoadMoreBtn.jsx';
 
 const LIMIT = 12;
 
-const CatalogList = () => {
+const CatalogList = ({filters = {}}) => {
   const [cars, setCars] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(1);
@@ -18,7 +18,7 @@ const CatalogList = () => {
     const getData = async () => {
       setIsLoading(true);
       try {
-        const data = await fetchCars({ page: 1, limit: LIMIT });
+        const data = await fetchCars({ page: 1, limit: LIMIT, ...filters });
         setCars(data.cars);
         setPage(1);
         setTotalPages(data.totalPages);
@@ -32,7 +32,7 @@ const CatalogList = () => {
       }
     };
     getData();
-  }, []);
+  }, [filters]);
 
   const handleLoadMore = async () => {
     if (isLoading || page >=totalPages) return;
@@ -40,12 +40,12 @@ const CatalogList = () => {
     setIsLoading(true);
     try {
       const nextPage = page + 1;
-      const data = await fetchCars({ page: nextPage, limit: LIMIT });
+      const data = await fetchCars({ page: nextPage, limit: LIMIT, ...filters });
       setCars(prev => [...prev, ...(data.cars ?? [])]);
       setPage(nextPage);
       setTotalPages(data.totalPages ?? totalPages);
     } catch (error) {
-      console.error(error);
+      console.error('Failed to load more cars', error);
     } finally {
       setIsLoading(false);
     }

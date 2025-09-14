@@ -1,14 +1,16 @@
-import CatalogList from "../../components/CatalogList/CatalogList.jsx";
-import Filter from "../../components/Filter/Filter.jsx";
-import LoadMoreBtn from "../../components/LoadMoreBtn/LoadMoreBtn.jsx";
+import { useState } from 'react';
+import CatalogList from '../../components/CatalogList/CatalogList.jsx';
+import Filter from '../../components/Filter/Filter.jsx';
 
-const Catalog = () => {
-  return (
-    <>
-    <Filter />
-    <CatalogList />
-    </>
+const CatalogPage = () => {
+  const [filters, setFilters] = useState({}) 
+
+   return (
+    <main>
+      <Filter initialBrand={filters.brand || ''} onApply={(values) => setFilters(values)} />
+      <CatalogList filters={filters} />
+    </main>
   );
 };
 
-export default Catalog;
+export default CatalogPage;

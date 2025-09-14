@@ -7,7 +7,6 @@ import { Header } from './Header/Header.jsx';
 const HomePage = lazy(() => import('../pages/HomePage/HomePage.jsx'));
 const CatalogPage = lazy(() => import('../pages/CatalogPage/CatalogPage.jsx'));
 const CarDetailsPage = lazy(() => import('../pages/CarDetailsPage/CarDetailsPage.jsx'));
-const CarBrands = lazy(() => import('./CarBrands/CarBrands.jsx'));
 const NotFound = lazy(() => import('../pages/NotFound/NotFound.jsx'));
 
 const App = () => {
@@ -20,7 +19,6 @@ const App = () => {
           <Route path='/' element={<HomePage />} />
           <Route path='/catalog' element={<CatalogPage />} />
           <Route path='/catalog/:id' element={<CarDetailsPage />} />
-          <Route path='/brands' element={<CarBrands />} />
 
           <Route path='*' element={<NotFound />}/>
         </Routes>
