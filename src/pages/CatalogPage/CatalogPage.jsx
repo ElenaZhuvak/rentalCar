@@ -7,7 +7,6 @@ const Catalog = () => {
     <>
     <Filter />
     <CatalogList />
-    <LoadMoreBtn />
     </>
   );
 };

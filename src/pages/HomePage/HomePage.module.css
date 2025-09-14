@@ -33,6 +33,8 @@
   padding: 12px 88px;
   margin-bottom: 60px;
   border-style: none;
+  border-radius: 12px;
+  text-decoration: none;
   transition: background-color 0.25s ease, color 0.25s ease;
 }
 

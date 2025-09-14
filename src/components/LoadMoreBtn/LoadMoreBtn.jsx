@@ -1,6 +1,16 @@
-const LoadMoreBtn = () => {
+import css from './LoadMoreBtn.module.css';
+
+const LoadMoreBtn = ({ onClick, disabled, isLoading }) => {
   return (
-    <div>LoadMoreBtn</div>
+    <button
+      className={css.btn}
+      type='button'
+      onClick={onClick}
+      disabled={disabled}
+      style={{cursor: disabled ? 'not-allowed' : 'pointer'}}
+    >
+      {isLoading ? 'Loading...' : 'Load More'}
+    </button>
   );
 };
 

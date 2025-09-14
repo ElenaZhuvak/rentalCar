@@ -1,0 +1,10 @@
+.CarDetailsContainer {
+padding: 84px 120px 104px;
+}
+
+.carImage {
+  object-fit: contain;
+  border-radius: 14px;
+  width: 640px;
+  height: 512px;
+}
