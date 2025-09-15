@@ -1,5 +1,10 @@
-import { Link } from "react-router-dom";
-import css from './CarCard.module.css'
+import { Link } from 'react-router-dom';
+import css from './CarCard.module.css';
+import {
+  parseCityCountry,
+  formatMileage,
+  formatCarType,
+} from '../../helpers/carFormat';
 
 const CarCard = ({ car }) => {
   const {
@@ -15,12 +20,20 @@ const CarCard = ({ car }) => {
     mileage,
   } = car;
 
-  return (
-      <li className={css.item}>
-        <div>
-          <img className={css.carImage} src={img} alt={`${brand} ${model}`} loading="lazy" />
-        </div>
+  const { city, country } = parseCityCountry(address);
+  const mileageFormatted = formatMileage(mileage);
+  const typeLabel = formatCarType(type);
 
+  return (
+    <li className={css.item}>
+      <img
+        className={css.carImage}
+        src={img}
+        alt={`${brand} ${model}`}
+        loading="lazy"
+      />
+
+      <div className={css.cardBody}>
         <div className={css.cardTitle}>
           <h3 className={css.carTitle}>
             {brand} <span className={css.model}>{model}</span>, {year}
@@ -28,10 +41,24 @@ const CarCard = ({ car }) => {
           <span className={css.carPrice}>${rentalPrice}</span>
         </div>
 
-        {address}, {rentalCompany}, {type}, {mileage}
+        <div className={css.cardFormat}>
+          <div className={css.text}>
+            <span>{city}</span>
+            <span>{country}</span>
+            <span>{rentalCompany}</span>
+          </div>
 
-        <Link to={`/catalog/${id}`} className={css.btn}>Read more</Link>
-      </li>
+          <div className={css.text}>
+            <span>{typeLabel}</span>
+            <span>{mileageFormatted} km</span>
+          </div>
+        </div>
+      </div>
+
+      <Link to={`/catalog/${id}`} className={css.btn}>
+        Read more
+      </Link>
+    </li>
   );
 };
 

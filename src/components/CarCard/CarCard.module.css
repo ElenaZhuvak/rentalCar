@@ -1,33 +1,54 @@
 .item {
   display: flex;
   flex-direction: column;
-  min-width: 276px;
-  height: 424px;
+  width: 276px;
 }
+
 .carImage {
   object-fit: contain;
   border-radius: 14px;
 }
+.cardBody {
+  margin-top: 16px;
+  margin-bottom: 28px;
+}
 .cardTitle {
   display: flex;
   justify-content: space-between;
-  padding-right: 12px;
-  margin-top: 16px;
   margin-bottom: 8px;
 }
 .carTitle,
 .carPrice {
   font-weight: 400;
   font-size: 16px;
-  line-height: 20px;
+  line-height: 1.25;
+  color: #101828;
 }
 .model {
-    color: #3470ff;
+  color: #3470ff;
 }
-
+.cardFormat {
+  display: flex;
+  gap: 4px;
+  flex-direction: column;
+}
+.text {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.33;
+  color: #8d929a;
+}
+.text span + span::before {
+  content: "";
+  display: inline-block;
+  width: 1px;
+  height: 16px;
+  background: #DADDE1;
+  margin: 0 6px;         
+  transform: translateY(4px);
+}
 .btn {
   display: block;
-  margin-top: 28px;
   text-align: center;
   padding-top: 12px;
   padding-bottom: 12px;
