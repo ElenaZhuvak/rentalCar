@@ -1,11 +1,21 @@
+import css from './Filter.module.css';
 import { useEffect, useState } from 'react';
 import { fetchBrands } from '../../services/api.js';
-import css from './Filter.module.css';
+import { normalizeRange } from '../../utils/normalizeRange.js';
 
-const Filter = ({ onApply, initialBrand = '' }) => {
+const PRICE_OPTIONS = [30, 40, 50, 60, 70, 80];
+
+const Filter = ({ onApply }) => {
   const [loading, setLoading] = useState(false);
+
+  const [brand, setBrand] = useState('');
+  const [price, setPrice] = useState('');
+  const [mileageFrom, setMileageFrom] = useState('');
+  const [mileageTo, setMileageTo] = useState('');
+
   const [brands, setBrands] = useState([]);
-  const [brand, setBrand] = useState(initialBrand);
+  const [openBrand, setOpenBrand] = useState(false);
+  const [openPrice, setOpenPrice] = useState(false);
 
   useEffect(() => {
     const getData = async () => {
@@ -23,23 +33,51 @@ const Filter = ({ onApply, initialBrand = '' }) => {
     getData();
   }, []);
 
-  const handleSubmit = event => {
-    event.preventDefault();
-    onApply({ brand });
+  const onlyDigits = v => v.replace(/[^\d]/g, '');
+  const closeAll = () => {
+    setOpenBrand(false);
+    setOpenPrice(false);
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    const { from, to } = normalizeRange(mileageFrom, mileageTo);
+
+    onApply({
+      brand: brand || undefined,
+      price: price === '' ? undefined : Number(price),
+      mileageFrom: from,
+      mileageTo: to,
+    });
+
+    setBrand('');
+    setPrice('');
+    setMileageFrom('');
+    setMileageTo('');
+    closeAll();
   };
 
   return (
     <form onSubmit={handleSubmit} className={css.filter}>
+
+      {/* brand */}
       <div className={css.group}>
+
         <label className={css.label}>Car brand</label>
-        <select className={css.select} value={brand} onChange={e => setBrand(e.target.value)}>
-          <option className={css.option} value="">Choose a brand</option>
-          {brands.map(brand => (
-            <option key={brand} value={brand}>
-              {brand}
-            </option>
-          ))}
-        </select>
+
+        <button
+          type="button"
+          className={css.control}
+          onClick={() => { setOpenBrand(o => !o); setOpenPrice(false); }}
+          aria-haspopup="listbox"
+          aria-expanded={openBrand}
+        >
+          <span className={css.controlText}>{brand || 'Choose a brand'}</span>
+          <svg className={css.caret} data-open={openBrand ? 'true' : 'false'} viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M7 10l5 5 5-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+          </svg>
+        </button>
+    
       </div>
 
       <button className={css.btn} type="submit" disabled={loading}>

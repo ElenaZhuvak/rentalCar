@@ -4,7 +4,7 @@ import {
   parseCityCountry,
   formatMileage,
   formatCarType,
-} from '../../helpers/carFormat';
+} from '../../utils/carFormat';
 
 const CarCard = ({ car }) => {
   const {
