@@ -1,7 +1,16 @@
-import { fetchCars } from "../../services/api.js";
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { fetchCars as apiFetchCars} from "../../services/api.js";
 
-const fetchCarsThank = createAsyncThunk(
+const fetchCarsThunk = createAsyncThunk(
   'cars/fetchCars',
-  async (_, { rejectWithValue }) => {
+  async (filters, { rejectWithValue }) => {
     try {
-      const response = await fetchCars(filter);}
+      const data = await apiFetchCars(filters);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+    }
+);
+
+export { fetchCarsThunk as fetchCars };

@@ -11,21 +11,22 @@ import {
 } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import { carsReducer } from '../redux/cars/carsSlice.js'
-import { filtersReducer } from './cgange111/filtersSelector.js'
+import { filtersReducer } from './filters/filtersSlice.js'
 
-const persistConfig = {
-  key: 'root',
+const filtersPersistConfig = {
+  key: 'filters',
   version: 1,
   storage,
 }
 
-const persistedReducer = persistReducer(persistConfig, carsReducer)
+const rootReducer = {
+  cars: carsReducer,
+  filters: persistReducer(filtersPersistConfig, filtersReducer),
+}
+
 
 export const store = configureStore({
-  reducer: {
-    cars: persistedReducer,
-    filters: filtersReducer,
-  },
+  reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
