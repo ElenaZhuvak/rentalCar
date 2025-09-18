@@ -10,8 +10,8 @@ import {
   REGISTER,
 } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
-import { carsReducer } from './cars/carsSlice.js'
-import { filtersReducer } from './filter/filtersSlice.js'
+import { carsReducer } from '../redux/cars/carsSlice.js'
+import { filtersReducer } from './cgange111/filtersSelector.js'
 
 const persistConfig = {
   key: 'root',

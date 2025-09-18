@@ -1,5 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import { fetchCars } from "../../services/api.js";
+import { clearFilters, setFilters } from "../cgange111/filtersSlice.js";
 
 const initialState = {
   cars: [],
@@ -8,10 +9,14 @@ const initialState = {
 };
 
 const carsSlice = createSlice({
-  name: 'cars',
+  name: 'cars', 
   initialState,
   extraReducers: (builder) => {
     builder
+    .addMatcher(isAnyOf(setFilters, clearFilters), (state) => {
+        state.cars = [];
+        state.error = null;
+    })
       .addCase(fetchCars.pending, (state) => {
         state.loading = true;
         state.error = null; 
