@@ -26,13 +26,59 @@
   color: #101828;
 }
 
-
 .chevron {
   transition: transform 0.18s ease;
   color: #101828;
 }
 .chevronRotated {
   transform: rotate(180deg);
+}
+
+.inputWrap {
+  position: relative;
+}
+
+.prefix {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #8a8a8a;
+  font-weight: 500;
+  pointer-events: none;
+}
+
+.input {
+  height: 48px;
+  border-radius: 14px;
+  border: 1px solid #dae3f3;
+  background: #f7f7fb;
+  font-size: 16px;
+  outline: none;
+}
+
+.inputLeft {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.inputRight {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-left: none;
+}
+
+.divider {
+  width: 1px;
+  height: 32px;
+  background: #cfd5e3;
+  align-self: center;
+}
+
+.padFrom {
+  padding-left: 76px;
+}
+.padTo {
+  padding-left: 52px;
 }
 
 .btn {

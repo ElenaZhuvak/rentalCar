@@ -1,7 +1,7 @@
 import css from './Filter.module.css';
 import { useEffect, useMemo, useState } from 'react';
 import Select, { components as RS } from 'react-select';
-// import { normalizeRange } from '../../utils/normalizeRange.js';
+import { normalizeRange } from '../../utils/normalizeRange.js';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   selectBrands,
@@ -37,6 +37,9 @@ const Filter = () => {
   const isLoadingBrands = useSelector(selectBrandsLoading);
 
   const [selectedBrand, setSelectedBrand] = useState('');
+  const [selectedPrice, setSelectedPrice] = useState('');
+  const [mileageFromStr, setMileageFromStr] = useState('');
+  const [mileageToStr, setMileageToStr] = useState('');
 
   useEffect(() => {
     if (!brandList.length && !isLoadingBrands) {
@@ -48,13 +51,46 @@ const Filter = () => {
     () => brandList.map(name => ({ value: name, label: name })),
     [brandList]
   );
+  const priceOption = useMemo(
+    () => PRICE_OPTIONS.map(price => ({ value: price, label: `${price}` })),
+    []
+  );
+
+  const onlyDigits = s => s.replace(/\D/g, '');
+  const formatWithComma = digits =>
+    digits ? new Intl.NumberFormat('en-US').format(Number(digits)) : '';
+
+  const handleMileageFromChange = e => {
+    const digits = onlyDigits(e.target.value);
+    setMileageFromStr(formatWithComma(digits));
+  };
+
+  const handleMileageToChange = e => {
+    const digits = onlyDigits(e.target.value);
+    setMileageToStr(formatWithComma(digits));
+  };
 
   const handleSubmit = e => {
     e.preventDefault();
-    const brand = selectedBrand || '';
-    dispatch(setFilters({ brand }));
+    const filters = {
+      brand: selectedBrand || undefined,
+      price: selectedPrice !== '' ? Number(selectedPrice) : undefined,
+      mileageFrom: from,
+      mileageTo: to,
+    };
+
+    const rawFrom = mileageFromStr.replace(/\D/g, '');
+    const rawTo = mileageToStr.replace(/\D/g, '');
+
+    const { from, to } = normalizeRange(rawFrom, rawTo);
+
+    dispatch(setFilters(filters));
     dispatch(fetchCarsThunk());
+
     setSelectedBrand('');
+    setSelectedPrice('');
+    setMileageFromStr('');
+    setMileageToStr('');
   };
 
   return (
@@ -68,8 +104,12 @@ const Filter = () => {
           classNamePrefix="select"
           placeholder="Choose a brand"
           options={brandOption}
-          value={selectedBrand ? {value: selectedBrand, label: selectedBrand} : null}
-          onChange={option => setSelectedBrand(option.value)}
+          value={
+            selectedBrand
+              ? { value: selectedBrand, label: selectedBrand }
+              : null
+          }
+          onChange={option => setSelectedBrand(option?.value ?? '')}
           isLoading={isLoadingBrands}
           menuPortalTarget={document.body}
           menuPosition="absolute"
@@ -77,6 +117,73 @@ const Filter = () => {
           components={{ IndicatorSeparator: null, DropdownIndicator }}
           isClearable={false}
         />
+      </div>
+
+      {/* price */}
+      <div className={css.group}>
+        <label className={css.label}>Price/ 1 hour</label>
+
+        <Select
+          className={css.select}
+          classNamePrefix="select"
+          placeholder="Choose a price"
+          options={priceOption}
+          formatOptionLabel={(option, { context }) =>
+            context === 'menu' ? option.label : `To $${option.value}`
+          }
+          value={
+            selectedPrice
+              ? { value: selectedPrice, label: selectedPrice }
+              : null
+          }
+          onChange={option => setSelectedPrice(option?.value ?? '')}
+          menuPortalTarget={document.body}
+          menuPosition="absolute"
+          menuPlacement="auto"
+          components={{ IndicatorSeparator: null, DropdownIndicator }}
+          isClearable={false}
+        />
+      </div>
+
+      {/* mileage */}
+      <div className={css.groupRow}>
+        <label className={css.label}>Car mileage / km</label>
+
+        <div className={css.range}>
+          {/* FROM */}
+          <div className={css.inputWrap}>
+            <span className={css.prefix} aria-hidden="true">
+              From
+            </span>
+            <input
+              type="text"
+              className={`${css.input} ${css.inputLeft} ${css.padFrom}`}
+              inputMode="numeric"
+              pattern="\d*"
+              value={mileageFromStr}
+              onChange={handleMileageFromChange}
+              aria-label="Mileage from"
+            />
+          </div>
+
+          <span className={css.divider} />
+
+          {/* TO */}
+          <div className={css.inputWrap}>
+            <span className={css.prefix} aria-hidden="true">
+              To
+            </span>
+            <input
+              type="text"
+              className={`${css.input} ${css.inputRight} ${css.padTo}`}
+              inputMode="numeric"
+              pattern="\d*"
+              value={mileageToStr}
+              onChange={handleMileageToChange}
+              aria-label="Mileage to"
+            />
+          </div>
+        </div>
       </div>
 
       <button className={css.btn} type="submit" disabled={isLoadingBrands}>

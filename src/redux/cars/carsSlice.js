@@ -20,10 +20,10 @@ const carsSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchCarsThunk.fulfilled, (state, action) => {
-        const { cars = [], page, totalPages } = action.payload || {};
+        const { cars = [], page =1, totalPages = 1 } = action.payload || {};
         state.cars = cars;
-        state.page = page;
-        state.totalPages = totalPages;
+        state.page = Number(page) || 1;
+        state.totalPages = Number(totalPages) || 1;
         state.loading = false;
       })
       .addCase(fetchCarsThunk.rejected, (state, action) => {
@@ -33,15 +33,15 @@ const carsSlice = createSlice({
       .addCase(fetchMoreCarsThunk.fulfilled, (state, action) => {
         const { cars = [], page, totalPages } = action.payload || {};
         state.cars = state.cars.concat(cars);
-        if (page != null) state.page = page;
-        if (totalPages != null) state.totalPages = totalPages;
+        if (page != null) state.page = Number(page) || state.page;
+        if (totalPages != null) state.totalPages = Number(totalPages) || state.totalPages;
         state.loading = false;
       })
       .addMatcher(isAnyOf(setFilters, clearFilters), state => {
         state.cars = [];
         state.page = 1;
         state.totalPages = 1;
-        state.error = null;
+        state.error = null; 
       })
     },
 });
