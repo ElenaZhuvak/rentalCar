@@ -12,7 +12,6 @@ export async function fetchCars({
 } = {}) {
   const params = { page, limit };
   if (brand) params.brand = brand;
-
   if (price !== '' && price != null) params.price = Number(price);
   if (mileageFrom !== '' && mileageFrom != null) params.mileageFrom = Number(mileageFrom);
   if (mileageTo !== '' && mileageTo != null) params.mileageTo = Number(mileageTo);

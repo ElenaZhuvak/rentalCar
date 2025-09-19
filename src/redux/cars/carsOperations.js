@@ -1,16 +1,32 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import { fetchCars as apiFetchCars} from "../../services/api.js";
+// redux/cars/carsOperations.js
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { fetchCars as apiFetchCars } from '../../services/api';
 
-const fetchCarsThunk = createAsyncThunk(
+const LIMIT = 12;
+
+export const fetchCarsThunk = createAsyncThunk(
   'cars/fetchCars',
-  async (filters, { rejectWithValue }) => {
+  async (_, { getState, rejectWithValue }) => {
     try {
-      const data = await apiFetchCars(filters);
+      const { filters } = getState();                  
+      const data = await apiFetchCars({ page: 1, limit: LIMIT, ...filters });
+      return data;                                      
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const fetchMoreCarsThunk = createAsyncThunk(
+  'cars/fetchMore',
+  async (_, { getState, rejectWithValue }) => {
+    const state = getState();
+    const nextPage = state.cars.page + 1;
+    try {
+      const data = await apiFetchCars({ page: nextPage, limit: LIMIT, ...state.filters });
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
     }
-    }
+  }
 );
-
-export { fetchCarsThunk as fetchCars };

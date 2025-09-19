@@ -1,34 +1,48 @@
-import { createSlice, isAnyOf } from "@reduxjs/toolkit";
-import { fetchCars } from "./carsOperations.js";
-import { clearFilters, setFilters } from "../filters/filtersSlice.js";
+import { createSlice, isAnyOf } from '@reduxjs/toolkit';
+import { fetchCarsThunk, fetchMoreCarsThunk } from './carsOperations.js';
+import { clearFilters, setFilters } from '../filters/filtersSlice.js';
 
 const initialState = {
   cars: [],
+  page: 1,
+  totalPages: 1,
   loading: false,
   error: null,
 };
 
 const carsSlice = createSlice({
-  name: 'cars', 
+  name: 'cars',
   initialState,
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     builder
-    .addCase(fetchCars.pending, (state) => {
+      .addCase(fetchCarsThunk.pending, state => {
         state.loading = true;
-        state.error = null; 
-    })
-    .addCase(fetchCars.fulfilled, (state, action) => {
-        state.cars = action.payload;
+        state.error = null;
+      })
+      .addCase(fetchCarsThunk.fulfilled, (state, action) => {
+        const { cars = [], page, totalPages } = action.payload || {};
+        state.cars = cars;
+        state.page = page;
+        state.totalPages = totalPages;
         state.loading = false;
-      } )
-      .addCase(fetchCars.rejected, (state, action) => {
-          state.loading = false;
-          state.error =action.payload || action.error.message; 
-        })
-        .addMatcher(isAnyOf(setFilters, clearFilters), (state) => {
-            state.cars = [];
-            state.error = null;
-        })
+      })
+      .addCase(fetchCarsThunk.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload || action.error.message;
+      })
+      .addCase(fetchMoreCarsThunk.fulfilled, (state, action) => {
+        const { cars = [], page, totalPages } = action.payload || {};
+        state.cars = state.cars.concat(cars);
+        if (page != null) state.page = page;
+        if (totalPages != null) state.totalPages = totalPages;
+        state.loading = false;
+      })
+      .addMatcher(isAnyOf(setFilters, clearFilters), state => {
+        state.cars = [];
+        state.page = 1;
+        state.totalPages = 1;
+        state.error = null;
+      })
     },
 });
 

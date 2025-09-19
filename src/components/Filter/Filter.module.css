@@ -25,6 +25,16 @@
   line-height: 1.25;
   color: #101828;
 }
+
+
+.chevron {
+  transition: transform 0.18s ease;
+  color: #101828;
+}
+.chevronRotated {
+  transform: rotate(180deg);
+}
+
 .btn {
   text-align: center;
   padding: 12px 51px;
