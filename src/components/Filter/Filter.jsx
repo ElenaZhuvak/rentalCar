@@ -10,9 +10,9 @@ import {
 import { fetchBrandsThunk } from '../../redux/brands/brandsOperations.js';
 import { fetchCarsThunk } from '../../redux/cars/carsOperations.js';
 import { setFilters } from '../../redux/filters/filtersSlice.js';
+import SPRITE from '../../assets/symbol-defs.svg';
 
 const PRICE_OPTIONS = [30, 40, 50, 60, 70, 80];
-const SPRITE = '/src/assets/sprite.svg';
 
 const DropdownIndicator = props => {
   const { menuIsOpen } = props.selectProps;
@@ -38,8 +38,8 @@ const Filter = () => {
 
   const [selectedBrand, setSelectedBrand] = useState('');
   const [selectedPrice, setSelectedPrice] = useState('');
-  const [mileageFromStr, setMileageFromStr] = useState('');
-  const [mileageToStr, setMileageToStr] = useState('');
+  const [mileageFrom, setMileageFrom] = useState('');
+  const [mileageTo, setMileageTo] = useState('');
 
   useEffect(() => {
     if (!brandList.length && !isLoadingBrands) {
@@ -56,22 +56,27 @@ const Filter = () => {
     []
   );
 
-  const onlyDigits = s => s.replace(/\D/g, '');
+  const onlyDigits = string => string.replace(/\D/g, '');
   const formatWithComma = digits =>
     digits ? new Intl.NumberFormat('en-US').format(Number(digits)) : '';
 
   const handleMileageFromChange = e => {
     const digits = onlyDigits(e.target.value);
-    setMileageFromStr(formatWithComma(digits));
+    setMileageFrom(formatWithComma(digits));
   };
 
   const handleMileageToChange = e => {
     const digits = onlyDigits(e.target.value);
-    setMileageToStr(formatWithComma(digits));
+    setMileageTo(formatWithComma(digits));
   };
 
   const handleSubmit = e => {
     e.preventDefault();
+
+    const rawFrom = mileageFrom.replace(/\D/g, '');
+    const rawTo = mileageTo.replace(/\D/g, '');
+    const { from, to } = normalizeRange(rawFrom, rawTo);
+
     const filters = {
       brand: selectedBrand || undefined,
       price: selectedPrice !== '' ? Number(selectedPrice) : undefined,
@@ -79,24 +84,19 @@ const Filter = () => {
       mileageTo: to,
     };
 
-    const rawFrom = mileageFromStr.replace(/\D/g, '');
-    const rawTo = mileageToStr.replace(/\D/g, '');
-
-    const { from, to } = normalizeRange(rawFrom, rawTo);
-
     dispatch(setFilters(filters));
     dispatch(fetchCarsThunk());
 
     setSelectedBrand('');
     setSelectedPrice('');
-    setMileageFromStr('');
-    setMileageToStr('');
+    setMileageFrom('');
+    setMileageTo('');
   };
 
   return (
-    <form onSubmit={handleSubmit} className={css.filter}>
+    <form noValidate onSubmit={handleSubmit} className={css.filter}>
       {/* brand */}
-      <div className={css.group}>
+      <div className={`${css.group} ${css.brandBox}`}>
         <label className={css.label}>Car brand</label>
 
         <Select
@@ -116,11 +116,13 @@ const Filter = () => {
           menuPlacement="auto"
           components={{ IndicatorSeparator: null, DropdownIndicator }}
           isClearable={false}
+          isSearchable={false}
+          blurInputOnSelect
         />
       </div>
 
       {/* price */}
-      <div className={css.group}>
+      <div className={`${css.group} ${css.priceBox}`}>
         <label className={css.label}>Price/ 1 hour</label>
 
         <Select
@@ -142,11 +144,13 @@ const Filter = () => {
           menuPlacement="auto"
           components={{ IndicatorSeparator: null, DropdownIndicator }}
           isClearable={false}
+          isSearchable={false}
+          blurInputOnSelect
         />
       </div>
 
       {/* mileage */}
-      <div className={css.groupRow}>
+      <div className={css.group}>
         <label className={css.label}>Car mileage / km</label>
 
         <div className={css.range}>
@@ -157,16 +161,13 @@ const Filter = () => {
             </span>
             <input
               type="text"
-              className={`${css.input} ${css.inputLeft} ${css.padFrom}`}
+              className={`${css.inputFrom} ${css.inputLeft}`}
               inputMode="numeric"
-              pattern="\d*"
-              value={mileageFromStr}
+              value={mileageFrom}
               onChange={handleMileageFromChange}
               aria-label="Mileage from"
             />
           </div>
-
-          <span className={css.divider} />
 
           {/* TO */}
           <div className={css.inputWrap}>
@@ -175,10 +176,10 @@ const Filter = () => {
             </span>
             <input
               type="text"
-              className={`${css.input} ${css.inputRight} ${css.padTo}`}
+              className={`${css.inputTo} ${css.inputRight}`}
               inputMode="numeric"
               pattern="\d*"
-              value={mileageToStr}
+              value={mileageTo}
               onChange={handleMileageToChange}
               aria-label="Mileage to"
             />

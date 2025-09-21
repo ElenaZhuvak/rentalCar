@@ -17,7 +17,14 @@
   justify-content: space-between;
   margin-bottom: 8px;
 }
-.carTitle,
+.carTitle {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .carPrice {
   font-weight: 400;
   font-size: 16px;
@@ -39,12 +46,12 @@
   color: #8d929a;
 }
 .text span + span::before {
-  content: "";
+  content: '';
   display: inline-block;
   width: 1px;
   height: 16px;
-  background: #DADDE1;
-  margin: 0 6px;         
+  background: #dadde1;
+  margin: 0 6px;
   transform: translateY(4px);
 }
 .btn {

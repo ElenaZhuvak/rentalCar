@@ -1,3 +1,4 @@
+import { BarLoader } from 'react-spinners';
 import css from './LoadMoreBtn.module.css';
 
 const LoadMoreBtn = ({ onClick, disabled, isLoading }) => {
@@ -9,7 +10,7 @@ const LoadMoreBtn = ({ onClick, disabled, isLoading }) => {
       disabled={disabled}
       style={{cursor: disabled ? 'not-allowed' : 'pointer'}}
     >
-      {isLoading ? 'Loading...' : 'Load More'}
+      {isLoading ? <BarLoader /> : 'Load more'}
     </button>
   );
 };

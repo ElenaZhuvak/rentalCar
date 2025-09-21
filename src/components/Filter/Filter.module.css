@@ -3,7 +3,7 @@
   display: flex;
   justify-content: center;
   gap: 16px;
-  align-items: center;
+  align-items: flex-end;
   margin-bottom: 56px;
 }
 .group {
@@ -11,74 +11,138 @@
   flex-direction: column;
   gap: 8px;
 }
+
+.brandBox {
+  width: 204px;
+}
+.priceBox {
+  width: 196px;
+}
+
 .label {
-  font-weight: 400;
   font-size: 12px;
   line-height: 1.33;
   color: #8d929a;
 }
+
 .select {
-  padding: 12px 16px;
-  border-radius: 12px;
-  background: #f7f7f7;
   font-size: 16px;
   line-height: 1.25;
+}
+
+.select :global(.select__control) {
+  background: #f7f7f7;
+  border: none;
+  border-radius: 12px;
+  box-shadow: none;
+  cursor: pointer;
+}
+.select :global(.select__value-container) {
+  padding-top: 12px !important;
+  padding-bottom: 12px !important;
+  padding-left: 16px !important;
+}
+
+.select :global(.select__single-value),
+.select :global(.select__placeholder) {
   color: #101828;
 }
 
+:global(.select__menu) {
+  margin-top: 4px;
+  color: #8d929a;
+  background: #ffffff;
+  border: 1px solid #f7f7f7;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+:global(.select__menu-list) {
+  padding: 0;
+  row-gap: 8px;
+}
+
+:global(.select__option) {
+  padding: 0;
+}
+
+:global(.select__option--is-focused),
+:global(.select__option--is-selected),
+:global(.select__option:active) {
+  background: #ffffff !important;
+  color: #101828 !important;
+  outline: none;
+}
+
+.select :global(.select__indicators) {
+  color: #101828;
+  padding-right: 8px !important;
+}
+
 .chevron {
-  transition: transform 0.18s ease;
+  transition: transform 0.3s ease;
   color: #101828;
 }
 .chevronRotated {
   transform: rotate(180deg);
 }
 
+/* inputs below */
+.range {
+  display: flex;
+}
 .inputWrap {
   position: relative;
 }
 
 .prefix {
   position: absolute;
-  left: 16px;
+  left: 24px;
   top: 50%;
   transform: translateY(-50%);
-  color: #8a8a8a;
-  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #101828;
   pointer-events: none;
 }
 
-.input {
-  height: 48px;
+.inputFrom {
   border-radius: 14px;
-  border: 1px solid #dae3f3;
-  background: #f7f7fb;
+  border: none;
+  background: #F7F7F7;
   font-size: 16px;
+  line-height: 1.25;
   outline: none;
+  color: #101828;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 65px;
+  width: 160px;
+}
+
+.inputTo {
+  border-radius: 14px;
+  border: none;
+  background: #F7F7F7;
+  font-size: 16px;
+  line-height: 1.25;
+  outline: none;
+  color: #101828;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 47px;
+  width: 160px;
 }
 
 .inputLeft {
   border-top-right-radius: 0;
+  border-right: 1px solid #DADDE1;
   border-bottom-right-radius: 0;
 }
 .inputRight {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   border-left: none;
-}
-
-.divider {
-  width: 1px;
-  height: 32px;
-  background: #cfd5e3;
-  align-self: center;
-}
-
-.padFrom {
-  padding-left: 76px;
-}
-.padTo {
-  padding-left: 52px;
 }
 
 .btn {

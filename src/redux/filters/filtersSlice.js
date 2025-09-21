@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    brand: '',
-    price: '',
-    mileageFrom: '',
-    mileageTo: '',  
+    brand: null,
+    price: null,
+    mileageFrom: null,
+    mileageTo: null,  
 }
 
 const filtersSlice = createSlice({
