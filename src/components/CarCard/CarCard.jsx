@@ -5,6 +5,10 @@ import {
   formatMileage,
   formatCarType,
 } from '../../utils/carFormat';
+import SPRITE from '../../assets/symbol-defs.svg';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToFavorites, removeFromFavorites } from '../../redux/favourite/favouritesSlice.js';
+import { selectFavoritesIds } from '../../redux/favourite/favouritesSelector.js';
 
 const CarCard = ({ car }) => {
   const {
@@ -20,12 +24,37 @@ const CarCard = ({ car }) => {
     mileage,
   } = car;
 
+  const dispatch = useDispatch();
+  const favorites = useSelector(selectFavoritesIds);
+  const isFavorite = favorites.includes(id);
+
+const toggleFavorite = () => {
+  if (isFavorite) {
+    dispatch(removeFromFavorites(id));
+  } else {
+    dispatch(addToFavorites(id));
+  }
+}
+
   const { city, country } = parseCityCountry(address);
   const mileageFormatted = formatMileage(mileage);
   const typeLabel = formatCarType(type);
 
+
   return (
     <li className={css.item}>
+
+      <div className={css.favorite}>
+          <button
+            className={`${css.btnHeart} ${isFavorite ? css.active : ''}`}
+            onClick ={toggleFavorite}
+            type="button">
+            <svg className ={css.icon} width="16" height="16" aria-hidden="true">
+              <use href={`${SPRITE}#${isFavorite ? 'icon-heart-filled' : 'icon-heart'}`} />
+            </svg>
+          </button>
+      </div>
+
       <img
         className={css.carImage}
         src={img}

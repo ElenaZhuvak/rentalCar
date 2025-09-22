@@ -1,11 +1,39 @@
 .item {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 276px;
 }
+.favorite {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 99;
+}
 
+.btnHeart {
+  all: unset;
+  cursor: pointer;
+  color: #f2f4f7;
+  transition: color 0.25s ease;
+}
+
+.btnHeart.active {
+  color: #3470ff;
+}
+
+.btnHeart:hover {
+  color: #3470ff;
+}
+
+.icon {
+  fill: currentColor;
+  transition: fill 0.25s ease;
+}
 .carImage {
-  object-fit: contain;
+  width: 100%;
+  display: block;
+  object-fit: cover;
   border-radius: 14px;
 }
 .cardBody {

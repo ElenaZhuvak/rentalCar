@@ -1,0 +1,1 @@
+export const selectFavoritesIds = state => state.favorites.idFav || [];
