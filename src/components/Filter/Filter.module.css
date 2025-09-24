@@ -13,7 +13,7 @@
 }
 
 .brandBox {
-  width: 204px;
+  min-width: 204px;
 }
 .priceBox {
   width: 196px;

@@ -1,10 +1,69 @@
-.CarDetailsContainer {
-padding: 84px 120px 104px;
+.carDetailsContainer {
+  padding: 84px 120px 104px;
+  display: flex;
+  gap: 72px;
 }
-
-.carImage {
+.carImageDetails {
   object-fit: contain;
   border-radius: 14px;
   width: 640px;
   height: 512px;
+}
+.loader {
+  margin: 20px auto;
+}
+.error {
+  margin: 20px auto;
+  font-size: 18px;
+  text-align: center;
+  align-items: center;
+}
+.headerCarDetails {
+  margin-bottom: 68px;
+}
+.titleWrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.title {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33;
+  margin-bottom: 8px;
+}
+.id {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #8D929A;
+}
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.location {
+  display: flex;
+  gap: 4px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.price {
+    font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33;
+  color: #3470FF;
+  margin-bottom: 32px;
+}
+.specItem {
+  display: flex;
+  align-items: center; 
+}
+.checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }

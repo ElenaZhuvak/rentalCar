@@ -1,22 +1,22 @@
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
-// const BookingForm = () => {
-//   const dispatch = useDispatch();
+const BookingForm = () => {
+  const dispatch = useDispatch();
 
-//   const initialValues = {
-//     name: '',
-//     email: '',
-//     date: null,
-//     comment: null,
-//   };
+  const initialValues = {
+    name: '',
+    email: '',
+    date: null,
+    comment: null,
+  };
 
-//   const handleSubmit = (values, actions) => {
-//     dispatch()
-//     actions.resetForm();
-//     console.log(values);
-//   };
+  const handleSubmit = (values, actions) => {
+    dispatch()
+    actions.resetForm();
+    console.log(values);
+  };
 
-//   return <div>BookingForm</div>;
-// };
+  return <div>BookingForm</div>;
+};
 
-// export default BookingForm;
+export default BookingForm;

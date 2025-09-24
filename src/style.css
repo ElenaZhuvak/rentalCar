@@ -3,6 +3,7 @@ body {
   line-height: 1.5;
   margin: 0;
   padding: 0;
+  color: #101828;
 }
 
 *,
@@ -29,7 +30,6 @@ ol {
 
 img {
   display: block;
-  max-width: 100%;
 }
 
 button {
@@ -37,4 +37,7 @@ button {
   line-height: 20px;
   cursor: pointer;
   border-radius: 12px;
+}
+li {
+  list-style: none;
 }
