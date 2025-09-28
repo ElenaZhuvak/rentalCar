@@ -111,11 +111,11 @@ const CarDetailsPage = () => {
           <p className={css.desc}>{description}</p>
         </header>
 
-        <section aria-labelledby="rental-conditions">
+        <section aria-labelledby="rental-conditions" className={css.rentalConditionBox}>
           <h3 id="rental-conditions">Rental Conditions:</h3>
           <ul className={css.checklist}>
            {rentalConditions.map((condition, index) => (
-              <li key={index}>
+              <li key={index} className={css.item}>
                 <svg
                 className={css.icon}
                 aria-hidden="true"
@@ -125,12 +125,13 @@ const CarDetailsPage = () => {
               >
                 <use href={`${SPRITE}#icon-check-circle`}></use>
               </svg>
-                {condition}</li>
+                {condition}
+                </li>
            ))}
           </ul>
         </section>
 
-        <section aria-labelledby="car-specs">
+        <section aria-labelledby="car-specs" className={css.carSpecs}>
           <h3 id="car-specs">Car Specifications</h3>
           <dl className={css.specs}>
             <div className={css.specItem}>
@@ -192,7 +193,7 @@ const CarDetailsPage = () => {
           <h3 id="car-features">Accessories and functionalities:</h3>
           <ul className={css.checklist}>
             {accessories.map((accessory, index) => (
-              <li key={index}>
+              <li key={index} className={css.item}>
                 <svg
                 className={css.icon}
                 aria-hidden="true"
@@ -205,7 +206,7 @@ const CarDetailsPage = () => {
                 {accessory}</li>
             ))}
             {functionalities.map((functionality, index) => (
-              <li key={index}>
+              <li key={index} className={css.item}>
                 <svg
                 className={css.icon}
                 aria-hidden="true"

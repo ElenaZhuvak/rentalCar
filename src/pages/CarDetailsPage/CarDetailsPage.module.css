@@ -58,12 +58,38 @@
   color: #3470FF;
   margin-bottom: 32px;
 }
-.specItem {
-  display: flex;
-  align-items: center; 
+.rentalConditionBox {
+  margin-bottom: 110px;
 }
 .checklist {
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+.item {
+  align-items: center;
+}
+.item {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.carSpecs {
+  margin-bottom: 110px;
+}
+.specs {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.specItem {
+  display: flex;
+  align-items: center; 
+  gap: 8px;
+}
+dd, dl {
+  margin: 0;
 }

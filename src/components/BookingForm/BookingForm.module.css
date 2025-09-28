@@ -1,0 +1,36 @@
+.wrapper {
+  width: 640px;
+  padding: 32px;
+  border: 1px solid #DADDE1;
+  border-radius: 10px;
+  margin-top: 40px;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.formTitle {
+    margin-bottom: 24px;
+}
+.title {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 1.2;
+    margin-bottom: 8px;
+}
+.text {
+    font-weight: 500;
+    font-size: 16px;
+    color: #8D929A;
+}
+.input {
+    border-style: none;
+    background-color: #F7F7F7;
+    border-radius: 12px;
+    padding: 14px 20px;
+    font-weight: 500;
+    font-size: 16px;
+}
+.error {
+}
