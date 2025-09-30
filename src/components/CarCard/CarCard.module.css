@@ -100,3 +100,6 @@
 .btn:focus {
   background-color: #0b44cd;
 }
+.loading {
+  margin: 80px auto 124px;
+}

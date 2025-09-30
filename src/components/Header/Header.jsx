@@ -13,8 +13,8 @@ export const Header = () => {
         </NavLink>
 
         <nav className={css.nav}>
-            <NavLink className={buildLinkClass} to='/'>Home</NavLink>
-            <NavLink className={buildLinkClass} to='/catalog'>Catalog</NavLink>
+            <NavLink className={buildLinkClass} to='/' end >Home</NavLink>
+            <NavLink className={buildLinkClass} to='/catalog' end >Catalog</NavLink>
         </nav>
     </header>
   )

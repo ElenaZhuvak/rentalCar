@@ -40,7 +40,6 @@ const toggleFavorite = () => {
   const mileageFormatted = formatMileage(mileage);
   const typeLabel = formatCarType(type);
 
-
   return (
     <li className={css.item}>
 

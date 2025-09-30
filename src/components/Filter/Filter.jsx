@@ -47,6 +47,7 @@ const Filter = () => {
     }
   }, [brandList.length, isLoadingBrands, dispatch]);
 
+
   const brandOption = useMemo(
     () => brandList.map(name => ({ value: name, label: name })),
     [brandList]
