@@ -1,89 +1,120 @@
-import { ErrorMessage, Field, Form, Formik } from 'formik';
-import { useDispatch } from 'react-redux';
+import { Field, Form, Formik } from 'formik';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import './react-datepicker.css';
+import { enGB } from 'date-fns/locale';
 import css from './BookingForm.module.css';
-import * as Yup from 'yup';
+import { Bounce, ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const BookingForm = () => {
-  const dispatch = useDispatch();
 
   const initialValues = {
     name: '',
     email: '',
-    date: null,
+    startDate: null,
+    endDate: null,
     comment: '',
   };
 
   const handleSubmit = (values, actions) => {
-    dispatch();
     actions.resetForm();
     console.log(values);
+
+    toast.success('You successfully booked your car! 🚘', {
+      position: 'bottom-center',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'light',
+      transition: Bounce,
+    });
   };
-
-  const validationSchema = Yup.object().shape({
-    name: Yup.string()
-      .min(2, 'Name must be at least 2 characters')
-      .max(16, 'Name must be at most 16 characters')
-      .required('Name is required'),
-
-    email: Yup.string()
-      .email('Invalid email address')
-      .required('Email is required'),
-
-    date: Yup.date()
-      .min(new Date(), 'Date cannot be in the past')
-      .nullable(),
-
-    comment: Yup.string().max(512, 'Comment must be at most 512 characters'),
-  });
 
   return (
     <div className={css.wrapper}>
-      <Formik
-        initialValues={initialValues}
-        onSubmit={handleSubmit}
-        validationSchema={validationSchema}
-      >
-        <Form className={css.form}>
-          <div className={css.formTitle}>
-            <h3 className={css.title}>Book your car now</h3>
-            <p className={css.text}>
-              Stay connected! We are always ready to help you.
-            </p>
-          </div>
+      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+        {({ values, setFieldValue }) => (
+          <Form className={css.form}>
+            <div className={css.formTitle}>
+              <h3 className={css.title}>Book your car now</h3>
+              <p className={css.text}>
+                Stay connected! We are always ready to help you.
+              </p>
+            </div>
 
-          <Field
-            type="text"
-            placeholder="Name"
-            name="name"
-            className={css.input}
-          ></Field>
-          <ErrorMessage name="name" component="span" className={css.error} />
+            <Field
+              type="text"
+              placeholder="Name*"
+              name="name"
+              minLength={2}
+              maxLength={30}
+              required
+              className={css.input}
+            ></Field>
 
-          <Field
-            type="text"
-            placeholder="Email"
-            name="email"
-            className={css.input}
-          ></Field>
-          <ErrorMessage name="email" component="span" className={css.error} />
+            <Field
+              type="email"
+              placeholder="Email*"
+              name="email"
+              pattern="^[a-zA-Z0-9_\-+]+@[a-zA-Z]+\.[a-zA-Z]{2,3}$"
+              required
+              className={css.input}
+            ></Field>
 
-          <Field
-            type="date"
-            placeholder="Booking date"
-            name="date"
-            className={css.input}
-          ></Field>
+            <DatePicker
+              selected={values.startDate}
+              onChange={dates => {
+                const [start, end] = dates;
+                setFieldValue('startDate', start);
+                setFieldValue('endDate', end);
+              }}
+              startDate={values.startDate}
+              endDate={values.endDate}
+              selectsRange
+              minDate={new Date()}
+              isClearable
+              placeholderText="Booking date"
+              className={css.input}
+              dateFormat="dd/MM/yyyy"
+              locale={enGB}
+              useWeekdaysShort={false}
+              formatWeekDay={weekday =>
+                String(weekday).slice(0, 3).toUpperCase()
+              }
+              showPopperArrow={true}
+              popperClassName={css.datePicker}
+            />
 
-          <Field
-            type="textarea"
-            name="comment"
-            placeholder="Comment"
-            rows="3"
-            className={css.input}
-          ></Field>
+            <Field
+              as="textarea"
+              name="comment"
+              placeholder="Comment"
+              rows={4}
+              className={`${css.input} ${css.textarea}`}
+            />
 
-          <button type="submit">Send</button>
-        </Form>
+            <button type="submit" className={css.btnForm}>
+              Send
+            </button>
+            <ToastContainer
+              position="bottom-center"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick={false}
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="light"
+              transition={Bounce}
+            />
+          </Form>
+        )}
       </Formik>
     </div>
   );

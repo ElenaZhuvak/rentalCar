@@ -2,6 +2,12 @@
   padding: 84px 120px 104px;
   display: flex;
   gap: 72px;
+  align-items: flex-end;
+}
+.carFormDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
 }
 .carImageDetails {
   object-fit: contain;
@@ -18,6 +24,7 @@
   text-align: center;
   align-items: center;
 }
+
 .headerCarDetails {
   margin-bottom: 68px;
 }
@@ -36,7 +43,7 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 1.25;
-  color: #8D929A;
+  color: #8d929a;
 }
 .meta {
   display: flex;
@@ -52,15 +59,18 @@
   align-items: center;
 }
 .price {
-    font-weight: 600;
+  font-weight: 600;
   font-size: 24px;
   line-height: 1.33;
-  color: #3470FF;
+  color: #3470ff;
   margin-bottom: 32px;
 }
-.rentalConditionBox {
-  margin-bottom: 110px;
+.divider {
+  display: flex;
+  flex-direction: column;
+  gap: 110px;
 }
+
 .checklist {
   margin-top: 20px;
   display: flex;
@@ -68,17 +78,17 @@
   gap: 16px;
 }
 .item {
-  align-items: center;
-}
-.item {
   display: flex;
   flex-direction: row;
   gap: 8px;
+  align-items: center;
+}
+.icon {
+  width: 16px;
+  height: 16px;
+  overflow: visible;
 }
 
-.carSpecs {
-  margin-bottom: 110px;
-}
 .specs {
   margin-top: 20px;
   display: flex;
@@ -87,9 +97,10 @@
 }
 .specItem {
   display: flex;
-  align-items: center; 
+  align-items: center;
   gap: 8px;
 }
-dd, dl {
+dd,
+dl {
   margin: 0;
 }

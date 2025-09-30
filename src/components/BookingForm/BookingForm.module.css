@@ -1,36 +1,78 @@
 .wrapper {
   width: 640px;
   padding: 32px;
-  border: 1px solid #DADDE1;
+  border: 1px solid #dadde1;
   border-radius: 10px;
   margin-top: 40px;
 }
+
 .form {
   display: flex;
   flex-direction: column;
-  gap: 16px;
 }
+
 .formTitle {
-    margin-bottom: 24px;
+  margin-bottom: 24px;
 }
+
 .title {
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 1.2;
-    margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
+  margin-bottom: 8px;
 }
+
 .text {
-    font-weight: 500;
-    font-size: 16px;
-    color: #8D929A;
+  font-weight: 500;
+  font-size: 16px;
+  color: #8d929a;
 }
+
 .input {
-    border-style: none;
-    background-color: #F7F7F7;
-    border-radius: 12px;
-    padding: 14px 20px;
-    font-weight: 500;
-    font-size: 16px;
+  width: 100%;
+  border: 1px solid transparent;
+  background-color: #f7f7f7;
+  border-radius: 12px;
+  padding: 14px 20px;
+  font-size: 16px;
+  transition: border-color .2s, box-shadow .2s, background .2s;
 }
-.error {
+
+.input::placeholder {
+  color: #8D929A;
+}
+
+.input:focus {
+  outline: none;
+  background-color: #f7f7f7;
+  border-color: #3470ff;
+  box-shadow: 0 0 0 3px rgba(52,112,255,0.15);
+}
+.input:not(:nth-last-child(-n+2)) {
+  margin-bottom: 16px;
+}
+
+.textarea {
+  min-height: 160px;
+  line-height: 1.4;
+  resize: none; 
+  padding: 16px 20px;
+}
+
+
+.btnForm {
+  margin: 24px auto 0 auto;
+  background-color: #3470ff;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 58px;
+  width: 156px;
+  font-size: 16px;
+  line-height: 1.25;
+  transition: background-color 0.3s ease;
+}
+
+.btnForm:hover {
+  background-color: #0B44CD;
 }
