@@ -38,8 +38,8 @@ const Filter = () => {
 
   const [selectedBrand, setSelectedBrand] = useState('');
   const [selectedPrice, setSelectedPrice] = useState('');
-  const [mileageFrom, setMileageFrom] = useState('');
-  const [mileageTo, setMileageTo] = useState('');
+  const [minMileage, setMinMileage] = useState('');
+  const [maxMileage, setMaxMileage] = useState('');
 
   useEffect(() => {
     if (!brandList.length && !isLoadingBrands) {
@@ -61,28 +61,27 @@ const Filter = () => {
   const formatWithComma = digits =>
     digits ? new Intl.NumberFormat('en-US').format(Number(digits)) : '';
 
-  const handleMileageFromChange = e => {
+  const handleMinMileageChange = e => {
     const digits = onlyDigits(e.target.value);
-    setMileageFrom(formatWithComma(digits));
+    setMinMileage(formatWithComma(digits));
   };
 
-  const handleMileageToChange = e => {
+  const handleMaxMileageChange = e => {
     const digits = onlyDigits(e.target.value);
-    setMileageTo(formatWithComma(digits));
+    setMaxMileage(formatWithComma(digits));
   };
-
   const handleSubmit = e => {
     e.preventDefault();
 
-    const rawFrom = mileageFrom.replace(/\D/g, '');
-    const rawTo = mileageTo.replace(/\D/g, '');
+    const rawFrom = minMileage.replace(/\D/g, '');
+    const rawTo = maxMileage.replace(/\D/g, '');
     const { from, to } = normalizeRange(rawFrom, rawTo);
 
     const filters = {
       brand: selectedBrand || undefined,
       price: selectedPrice !== '' ? Number(selectedPrice) : undefined,
-      mileageFrom: from,
-      mileageTo: to,
+      minMileage: from,
+      maxMileage: to,
     };
 
     dispatch(setFilters(filters));
@@ -90,8 +89,8 @@ const Filter = () => {
 
     setSelectedBrand('');
     setSelectedPrice('');
-    setMileageFrom('');
-    setMileageTo('');
+    setMinMileage('');
+    setMaxMileage('');
   };
 
   return (
@@ -164,8 +163,8 @@ const Filter = () => {
               type="text"
               className={`${css.inputFrom} ${css.inputLeft}`}
               inputMode="numeric"
-              value={mileageFrom}
-              onChange={handleMileageFromChange}
+              value={minMileage}
+              onChange={handleMinMileageChange}
               aria-label="Mileage from"
             />
           </div>
@@ -180,8 +179,8 @@ const Filter = () => {
               className={`${css.inputTo} ${css.inputRight}`}
               inputMode="numeric"
               pattern="\d*"
-              value={mileageTo}
-              onChange={handleMileageToChange}
+              value={maxMileage}
+              onChange={handleMaxMileageChange}
               aria-label="Mileage to"
             />
           </div>

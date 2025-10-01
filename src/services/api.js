@@ -7,8 +7,8 @@ export async function fetchCars({
   limit = 12,
   brand,
   price,
-  mileageFrom,
-  mileageTo,
+  minMileage,
+  maxMileage,
 } = {}) {
   const params = { page, limit };
   if (brand) params.brand = brand;
@@ -19,12 +19,13 @@ export async function fetchCars({
     }
   }
 
-  if (mileageFrom !== '' && mileageFrom != null)
-    params.mileageFrom = Number(mileageFrom);
-  if (mileageTo !== '' && mileageTo != null)
-    params.mileageTo = Number(mileageTo);
+  if (minMileage !== '' && minMileage != null)
+    params.minMileage = Number(minMileage);
+  if (maxMileage !== '' && maxMileage != null)
+    params.maxMileage = Number(maxMileage);
 
   const { data } = await axios.get('/cars', { params });
+  console.log("data", {data})
   return data;
 }
 
