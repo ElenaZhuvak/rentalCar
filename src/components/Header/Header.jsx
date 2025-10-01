@@ -7,9 +7,7 @@ export const Header = () => {
   return (
     <header className={css.header}>
         <NavLink to='/'>
-            <svg className={css.logo}>
-                <use xlinkHref='../src/assets/symbol-defs.svg#icon-logo'></use>
-            </svg>
+            <img src='/src/assets/logo.png' alt='Logo' className={css.logo} />
         </NavLink>
 
         <nav className={css.nav}>
