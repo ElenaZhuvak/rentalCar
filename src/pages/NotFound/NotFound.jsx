@@ -3,10 +3,12 @@ import css from './NotFound.module.css'
 
 const NotFound = () => {
   return (
-    <div className={css.notFoundPage}>
-        <h3>Page not found. Try again</h3>
-        <Link to='/catalog'>Go to the catalog page</Link>
-    </div>
+    <main>
+      <div className={css.notFoundPage}>
+          <h3>Page not found. Try again</h3>
+          <Link to='/catalog'>Go to the catalog page</Link>
+      </div>
+    </main>
   );
 };
 

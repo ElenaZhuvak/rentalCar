@@ -3,6 +3,7 @@ import css from './App.module.css'
 import { Route, Routes } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 import { Header } from './Header/Header.jsx';
+import { BarLoader } from 'react-spinners';
 
 const HomePage = lazy(() => import('../pages/HomePage/HomePage.jsx'));
 const CatalogPage = lazy(() => import('../pages/CatalogPage/CatalogPage.jsx'));
@@ -14,7 +15,9 @@ const App = () => {
     <div className={css.container}>
       <Header />
 
-      <Suspense fallback={<h3>Loading...</h3>}>
+      <Suspense fallback={<div className={css.loading}>
+        <BarLoader className={css.loader} />
+      </div>}>
         <Routes>
           <Route path='/' element={<HomePage />} />
           <Route path='/catalog' element={<CatalogPage />} />

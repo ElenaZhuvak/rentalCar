@@ -2,8 +2,7 @@ import CatalogList from '../../components/CatalogList/CatalogList.jsx';
 import Filter from '../../components/Filter/Filter.jsx';
 
 const CatalogPage = () => {
-
-   return (
+  return (
     <main>
       <Filter />
       <CatalogList />
@@ -12,3 +11,5 @@ const CatalogPage = () => {
 };
 
 export default CatalogPage;
+
+

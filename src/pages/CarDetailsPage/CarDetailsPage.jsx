@@ -68,163 +68,165 @@ const CarDetailsPage = () => {
   const mileageFormatted = formatMileage(mileage);
 
   return (
-    <div className={css.carDetailsContainer}>
-      <div className={css.carFormDetails}>
-        <img className={css.carImageDetails} src={img} alt={description} />
-
-        <BookingForm />
-      </div>
-
-      <article className={css.car}>
-        <header className={css.headerCarDetails}>
-          <div className={css.titleWrapper}>
-            <h2 className={css.title}>
-              {brand} {model}, {year}
-            </h2>
-
-            <span className={css.id}>Id: {imgId}</span>
-          </div>
-
-          <p className={css.meta}>
-            <span className={css.location}>
-              <svg
-                className={css.icon}
-                aria-hidden="true"
-                focusable="false"
-                width="16"
-                height="16"
-              >
-                <use href={`${SPRITE}#icon-location`}></use>
-              </svg>
-              {location}
-            </span>
-
-            <span className={css.mileage}>Mileage: {mileageFormatted} km</span>
-          </p>
-
-          <p className={css.price}>${rentalPrice}</p>
-
-          <p className={css.desc}>{description}</p>
-        </header>
-
-        <div className={css.divider}>
-          <section
-            aria-labelledby="rental-conditions"
-            className={css.rentalConditionBox}
-          >
-            <h3 id="rental-conditions">Rental Conditions:</h3>
-            <ul className={css.checklist}>
-              {rentalConditions.map((condition, index) => (
-                <li key={index} className={css.item}>
-                  <svg
-                    className={css.icon}
-                    aria-hidden="true"
-                    focusable="false"
-                    width="16"
-                    height="16"
-                  >
-                    <use href={`${SPRITE}#icon-check-circle`}></use>
-                  </svg>
-                  {condition}
-                </li>
-              ))}
-            </ul>
-          </section>
+    <main>
+      <div className={css.carDetailsContainer}>
+        <div className={css.carFormDetails}>
+          <img className={css.carImageDetails} src={img} alt={description} />
   
-          <section aria-labelledby="car-specs" className={css.carSpecs}>
-            <h3 id="car-specs">Car Specifications</h3>
-            <dl className={css.specs}>
-              <div className={css.specItem}>
-                <svg
-                  className={css.icon}
-                  aria-hidden="true"
-                  focusable="false"
-                  width="16"
-                  height="16"
-                >
-                  <use href={`${SPRITE}#icon-calendar`}></use>
-                </svg>
-                <dt>Year: </dt>
-                <dd>{year}</dd>
-              </div>
-              <div className={css.specItem}>
-                <svg
-                  className={css.icon}
-                  aria-hidden="true"
-                  focusable="false"
-                  width="16"
-                  height="16"
-                >
-                  <use href={`${SPRITE}#icon-car`}></use>
-                </svg>
-                <dt>Type: </dt>
-                <dd>{type}</dd>
-              </div>
-              <div className={css.specItem}>
-                <svg
-                  className={css.icon}
-                  aria-hidden="true"
-                  focusable="false"
-                  width="16"
-                  height="16"
-                >
-                  <use href={`${SPRITE}#icon-fuel-pump`}></use>
-                </svg>
-                <dt>Fuel Consumption: </dt>
-                <dd>{fuelConsumption}</dd>
-              </div>
-              <div className={css.specItem}>
-                <svg
-                  className={css.icon}
-                  aria-hidden="true"
-                  focusable="false"
-                  width="16"
-                  height="16"
-                >
-                  <use href={`${SPRITE}#icon-gear`}></use>
-                </svg>
-                <dt>Engine Size: </dt>
-                <dd>{engineSize}</dd>
-              </div>
-            </dl>
-          </section>
-  
-          <section aria-labelledby="car-features">
-            <h3 id="car-features">Accessories and functionalities:</h3>
-            <ul className={css.checklist}>
-              {accessories.map((accessory, index) => (
-                <li key={index} className={css.item}>
-                  <svg
-                    className={css.icon}
-                    aria-hidden="true"
-                    focusable="false"
-                    width="16"
-                    height="16"
-                  >
-                    <use href={`${SPRITE}#icon-check-circle`}></use>
-                  </svg>
-                  {accessory}
-                </li>
-              ))}
-              {functionalities.map((functionality, index) => (
-                <li key={index} className={css.item}>
-                  <svg
-                    className={css.icon}
-                    aria-hidden="true"
-                    focusable="false"
-                    width="16"
-                    height="16"
-                  >
-                    <use href={`${SPRITE}#icon-check-circle`}></use>
-                  </svg>
-                  {functionality}
-                </li>
-              ))}
-            </ul>
-          </section>
+          <BookingForm />
         </div>
-      </article>
-    </div>
+  
+        <article className={css.car}>
+          <header className={css.headerCarDetails}>
+            <div className={css.titleWrapper}>
+              <h2 className={css.title}>
+                {brand} {model}, {year}
+              </h2>
+  
+              <span className={css.id}>Id: {imgId}</span>
+            </div>
+  
+            <p className={css.meta}>
+              <span className={css.location}>
+                <svg
+                  className={css.icon}
+                  aria-hidden="true"
+                  focusable="false"
+                  width="16"
+                  height="16"
+                >
+                  <use href={`${SPRITE}#icon-location`}></use>
+                </svg>
+                {location}
+              </span>
+  
+              <span className={css.mileage}>Mileage: {mileageFormatted} km</span>
+            </p>
+  
+            <p className={css.price}>${rentalPrice}</p>
+  
+            <p className={css.desc}>{description}</p>
+          </header>
+  
+          <div className={css.divider}>
+            <section
+              aria-labelledby="rental-conditions"
+              className={css.rentalConditionBox}
+            >
+              <h3 id="rental-conditions">Rental Conditions:</h3>
+              <ul className={css.checklist}>
+                {rentalConditions.map((condition, index) => (
+                  <li key={index} className={css.item}>
+                    <svg
+                      className={css.icon}
+                      aria-hidden="true"
+                      focusable="false"
+                      width="16"
+                      height="16"
+                    >
+                      <use href={`${SPRITE}#icon-check-circle`}></use>
+                    </svg>
+                    {condition}
+                  </li>
+                ))}
+              </ul>
+            </section>
+    
+            <section aria-labelledby="car-specs" className={css.carSpecs}>
+              <h3 id="car-specs">Car Specifications</h3>
+              <dl className={css.specs}>
+                <div className={css.specItem}>
+                  <svg
+                    className={css.icon}
+                    aria-hidden="true"
+                    focusable="false"
+                    width="16"
+                    height="16"
+                  >
+                    <use href={`${SPRITE}#icon-calendar`}></use>
+                  </svg>
+                  <dt>Year: </dt>
+                  <dd>{year}</dd>
+                </div>
+                <div className={css.specItem}>
+                  <svg
+                    className={css.icon}
+                    aria-hidden="true"
+                    focusable="false"
+                    width="16"
+                    height="16"
+                  >
+                    <use href={`${SPRITE}#icon-car`}></use>
+                  </svg>
+                  <dt>Type: </dt>
+                  <dd>{type}</dd>
+                </div>
+                <div className={css.specItem}>
+                  <svg
+                    className={css.icon}
+                    aria-hidden="true"
+                    focusable="false"
+                    width="16"
+                    height="16"
+                  >
+                    <use href={`${SPRITE}#icon-fuel-pump`}></use>
+                  </svg>
+                  <dt>Fuel Consumption: </dt>
+                  <dd>{fuelConsumption}</dd>
+                </div>
+                <div className={css.specItem}>
+                  <svg
+                    className={css.icon}
+                    aria-hidden="true"
+                    focusable="false"
+                    width="16"
+                    height="16"
+                  >
+                    <use href={`${SPRITE}#icon-gear`}></use>
+                  </svg>
+                  <dt>Engine Size: </dt>
+                  <dd>{engineSize}</dd>
+                </div>
+              </dl>
+            </section>
+    
+            <section aria-labelledby="car-features">
+              <h3 id="car-features">Accessories and functionalities:</h3>
+              <ul className={css.checklist}>
+                {accessories.map((accessory, index) => (
+                  <li key={index} className={css.item}>
+                    <svg
+                      className={css.icon}
+                      aria-hidden="true"
+                      focusable="false"
+                      width="16"
+                      height="16"
+                    >
+                      <use href={`${SPRITE}#icon-check-circle`}></use>
+                    </svg>
+                    {accessory}
+                  </li>
+                ))}
+                {functionalities.map((functionality, index) => (
+                  <li key={index} className={css.item}>
+                    <svg
+                      className={css.icon}
+                      aria-hidden="true"
+                      focusable="false"
+                      width="16"
+                      height="16"
+                    >
+                      <use href={`${SPRITE}#icon-check-circle`}></use>
+                    </svg>
+                    {functionality}
+                  </li>
+                ))}
+              </ul>
+            </section>
+          </div>
+        </article>
+      </div>
+    </main>
   );
 };
 

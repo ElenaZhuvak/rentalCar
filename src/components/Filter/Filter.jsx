@@ -1,5 +1,5 @@
 import css from './Filter.module.css';
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import Select, { components as RS } from 'react-select';
 import { normalizeRange } from '../../utils/normalizeRange.js';
 import { useDispatch, useSelector } from 'react-redux';
@@ -57,20 +57,21 @@ const Filter = () => {
     []
   );
 
-  const onlyDigits = string => string.replace(/\D/g, '');
-  const formatWithComma = digits =>
-    digits ? new Intl.NumberFormat('en-US').format(Number(digits)) : '';
+  const onlyDigits = useCallback(string => string.replace(/\D/g, ''), []);
+  const formatWithComma = useCallback(digits =>
+    digits ? new Intl.NumberFormat('en-US').format(Number(digits)) : '', []);
 
-  const handleMinMileageChange = e => {
+  const handleMinMileageChange = useCallback(e => {
     const digits = onlyDigits(e.target.value);
     setMinMileage(formatWithComma(digits));
-  };
+  }, [formatWithComma, onlyDigits]);
 
-  const handleMaxMileageChange = e => {
+  const handleMaxMileageChange = useCallback(e => {
     const digits = onlyDigits(e.target.value);
     setMaxMileage(formatWithComma(digits));
-  };
-  const handleSubmit = e => {
+  }, [formatWithComma, onlyDigits]);
+
+ const handleSubmit = useCallback(e => {
     e.preventDefault();
 
     const rawFrom = minMileage.replace(/\D/g, '');
@@ -91,7 +92,8 @@ const Filter = () => {
     setSelectedPrice('');
     setMinMileage('');
     setMaxMileage('');
-  };
+  }, [minMileage, maxMileage, selectedBrand, selectedPrice, dispatch]);
+
 
   return (
     <form noValidate onSubmit={handleSubmit} className={css.filter}>
@@ -187,8 +189,12 @@ const Filter = () => {
         </div>
       </div>
 
-      <button className={css.btn} type="submit" disabled={isLoadingBrands}>
+      <button className={css.btn} type="submit" >
         Search
+      </button>
+
+      <button className={css.btn} type="submit">
+        Reset
       </button>
     </form>
   );

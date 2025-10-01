@@ -25,7 +25,6 @@ export async function fetchCars({
     params.maxMileage = Number(maxMileage);
 
   const { data } = await axios.get('/cars', { params });
-  console.log("data", {data})
   return data;
 }
 

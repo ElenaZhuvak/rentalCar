@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { memo, useCallback, useMemo } from 'react';
 import css from './CarCard.module.css';
 import {
   parseCityCountry,
@@ -10,7 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addToFavorites, removeFromFavorites } from '../../redux/favourite/favouritesSlice.js';
 import { selectFavoritesIds } from '../../redux/favourite/favouritesSelector.js';
 
-const CarCard = ({ car }) => {
+const CarCard = memo(({ car }) => {
   const {
     id,
     brand,
@@ -26,32 +27,48 @@ const CarCard = ({ car }) => {
 
   const dispatch = useDispatch();
   const favorites = useSelector(selectFavoritesIds);
-  const isFavorite = favorites.includes(id);
+  
+  const isFavorite = useMemo(
+    () => favorites.includes(id),
+    [favorites, id]
+  );
 
-const toggleFavorite = () => {
-  if (isFavorite) {
-    dispatch(removeFromFavorites(id));
-  } else {
-    dispatch(addToFavorites(id));
-  }
-}
+  const toggleFavorite = useCallback(() => {
+    if (isFavorite) {
+      dispatch(removeFromFavorites(id));
+    } else {
+      dispatch(addToFavorites(id));
+    }
+  }, [isFavorite, id, dispatch]);
 
-  const { city, country } = parseCityCountry(address);
-  const mileageFormatted = formatMileage(mileage);
-  const typeLabel = formatCarType(type);
+  const formattedData = useMemo(() => {
+    const { city, country } = parseCityCountry(address);
+    return {
+      city,
+      country,
+      mileage: formatMileage(mileage),
+      type: formatCarType(type),
+    };
+  }, [address, mileage, type]);
+
+  const heartIcon = useMemo(
+    () => `${SPRITE}#${isFavorite ? 'icon-heart-filled' : 'icon-heart'}`,
+    [isFavorite]
+  );
 
   return (
     <li className={css.item}>
-
       <div className={css.favorite}>
-          <button
-            className={`${css.btnHeart} ${isFavorite ? css.active : ''}`}
-            onClick ={toggleFavorite}
-            type="button">
-            <svg className ={css.icon} width="16" height="16" aria-hidden="true">
-              <use href={`${SPRITE}#${isFavorite ? 'icon-heart-filled' : 'icon-heart'}`} />
-            </svg>
-          </button>
+        <button
+          className={`${css.btnHeart} ${isFavorite ? css.active : ''}`}
+          onClick={toggleFavorite}
+          type="button"
+          aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+        >
+          <svg className={css.icon} width="16" height="16" aria-hidden="true">
+            <use href={heartIcon} />
+          </svg>
+        </button>
       </div>
 
       <img
@@ -71,14 +88,14 @@ const toggleFavorite = () => {
 
         <div className={css.cardFormat}>
           <div className={css.text}>
-            <span>{city}</span>
-            <span>{country}</span>
+            <span>{formattedData.city}</span>
+            <span>{formattedData.country}</span>
             <span>{rentalCompany}</span>
           </div>
 
           <div className={css.text}>
-            <span>{typeLabel}</span>
-            <span>{mileageFormatted} km</span>
+            <span>{formattedData.type}</span>
+            <span>{formattedData.mileage} km</span>
           </div>
         </div>
       </div>
@@ -88,6 +105,6 @@ const toggleFavorite = () => {
       </Link>
     </li>
   );
-};
+});
 
 export default CarCard;

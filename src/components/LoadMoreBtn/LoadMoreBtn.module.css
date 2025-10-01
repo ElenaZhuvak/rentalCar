@@ -1,6 +1,6 @@
 .btn {
   display: block;
-  margin: 80px auto 124px;
+  margin: 0 auto 124px;
   padding: 12px 38px;
   text-align: center;
   border: 1px solid #3470ff;
@@ -9,7 +9,7 @@
   color: #101828;
   font-weight: 500;
   font-size: 16px;
-  line-height: 20px;
+  line-height: 1.25;
   transition: border 0.25s ease, color 0.25s ease;
 }
 .btn:hover,
