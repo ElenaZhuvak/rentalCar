@@ -4,7 +4,10 @@
   justify-content: center;
   gap: 16px;
   align-items: flex-end;
+  flex-wrap: wrap;
+  padding: 0 20px;
 }
+
 .group {
   display: flex;
   flex-direction: column;
@@ -14,6 +17,7 @@
 .brandBox {
   min-width: 204px;
 }
+
 .priceBox {
   width: 196px;
 }
@@ -36,6 +40,7 @@
   box-shadow: none;
   cursor: pointer;
 }
+
 .select :global(.select__value-container) {
   padding-top: 12px !important;
   padding-bottom: 12px !important;
@@ -82,14 +87,15 @@
   transition: transform 0.3s ease;
   color: #101828;
 }
+
 .chevronRotated {
   transform: rotate(180deg);
 }
 
-/* inputs below */
 .range {
   display: flex;
 }
+
 .inputWrap {
   position: relative;
 }
@@ -138,6 +144,7 @@
   border-right: 1px solid #DADDE1;
   border-bottom-right-radius: 0;
 }
+
 .inputRight {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
@@ -156,7 +163,98 @@
   line-height: 1.25;
   transition: background-color 0.25s ease, color 0.25s ease;
 }
+
 .btn:hover,
 .btn:focus {
   background-color: #0b44cd;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .filter {
+    margin-top: 60px;
+    gap: 12px;
+  }
+  
+  .brandBox {
+    min-width: 180px;
+  }
+  
+  .priceBox {
+    width: 180px;
+  }
+  
+  .inputFrom,
+  .inputTo {
+    width: 140px;
+    padding-left: 60px;
+  }
+  
+  .inputTo {
+    padding-left: 45px;
+  }
+  
+  .btn {
+    padding: 12px 40px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .filter {
+    margin-top: 40px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+    padding: 0 16px;
+  }
+  
+  .group {
+    width: 100%;
+  }
+  
+  .brandBox,
+  .priceBox {
+    min-width: 100%;
+    width: 100%;
+  }
+  
+  .range {
+    width: 100%;
+  }
+  
+  .inputWrap {
+    flex: 1;
+  }
+  
+  .inputFrom,
+  .inputTo {
+    width: 100%;
+  }
+  
+  .btn {
+    width: 100%;
+    padding: 14px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .filter {
+    margin-top: 32px;
+  }
+  
+  .prefix {
+    font-size: 14px;
+    left: 16px;
+  }
+  
+  .inputFrom {
+    padding-left: 50px;
+    font-size: 14px;
+  }
+  
+  .inputTo {
+    padding-left: 38px;
+    font-size: 14px;
+  }
 }

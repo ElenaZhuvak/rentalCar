@@ -1,23 +1,45 @@
 .carDetailsContainer {
   padding: 84px 120px 104px;
-  display: flex;
-  gap: 72px;
-  align-items: flex-end;
+  display: grid;
+  grid-template-columns: 640px 1fr;
+  grid-template-areas: 
+    "image car"
+    "form car";
+  gap: 40px 72px;
+  align-items: start;
 }
-.carFormDetails {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
+
+.imageWrapper {
+  grid-area: image;
 }
+
+.car {
+  grid-area: car;
+  max-width: 640px;
+}
+
+.formWrapper {
+  grid-area: form;
+}
+
 .carImageDetails {
   object-fit: contain;
   border-radius: 14px;
-  width: 640px;
+  width: 100%;
   height: 512px;
 }
+
 .loader {
   margin: 20px auto;
 }
+
+.loaderContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+}
+
 .error {
   margin: 20px auto;
   font-size: 18px;
@@ -28,29 +50,36 @@
 .headerCarDetails {
   margin-bottom: 68px;
 }
+
 .titleWrapper {
   display: flex;
   align-items: center;
   gap: 16px;
+  flex-wrap: wrap;
 }
+
 .title {
   font-weight: 600;
   font-size: 24px;
   line-height: 1.33;
   margin-bottom: 8px;
 }
+
 .id {
   font-weight: 500;
   font-size: 16px;
   line-height: 1.25;
   color: #8d929a;
 }
+
 .meta {
   display: flex;
   align-items: center;
   gap: 16px;
   margin-bottom: 16px;
+  flex-wrap: wrap;
 }
+
 .location {
   display: flex;
   gap: 4px;
@@ -58,6 +87,11 @@
   justify-content: center;
   align-items: center;
 }
+
+.mileage {
+  white-space: nowrap;
+}
+
 .price {
   font-weight: 600;
   font-size: 24px;
@@ -65,10 +99,23 @@
   color: #3470ff;
   margin-bottom: 32px;
 }
+
+.desc {
+  line-height: 1.5;
+}
+
 .divider {
   display: flex;
   flex-direction: column;
   gap: 110px;
+}
+
+.rentalConditionBox h3,
+.carSpecs h3,
+.divider h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
 }
 
 .checklist {
@@ -77,16 +124,19 @@
   flex-direction: column;
   gap: 16px;
 }
+
 .item {
   display: flex;
   flex-direction: row;
   gap: 8px;
   align-items: center;
 }
+
 .icon {
   width: 16px;
   height: 16px;
   overflow: visible;
+  flex-shrink: 0;
 }
 
 .specs {
@@ -95,12 +145,167 @@
   flex-direction: column;
   gap: 16px;
 }
+
 .specItem {
   display: flex;
   align-items: center;
   gap: 8px;
 }
+
 dd,
 dl {
   margin: 0;
+}
+
+/* Desktop */
+@media (max-width: 1280px) {
+  .carDetailsContainer {
+    padding: 60px 60px 80px;
+    grid-template-columns: 480px 1fr;
+    gap: 32px 48px;
+  }
+  
+  .carImageDetails {
+    height: 384px;
+  }
+  
+  .divider {
+    gap: 80px;
+  }
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .carDetailsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 40px 60px;
+    gap: 40px;
+  }
+  
+  .imageWrapper {
+    width: 100%;
+    max-width: 640px;
+    order: 1;
+  }
+  
+  .car {
+    width: 100%;
+    order: 2;
+  }
+  
+  .formWrapper {
+    width: 100%;
+    max-width: 640px;
+    order: 3;
+  }
+  
+  .carImageDetails {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 5/4;
+  }
+  
+  .headerCarDetails {
+    margin-bottom: 48px;
+  }
+  
+  .divider {
+    gap: 60px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .carDetailsContainer {
+    padding: 32px 20px 48px;
+    gap: 32px;
+  }
+  
+  .title {
+    font-size: 20px;
+  }
+  
+  .id {
+    font-size: 14px;
+  }
+  
+  .meta {
+    gap: 12px;
+    font-size: 14px;
+  }
+  
+  .price {
+    font-size: 20px;
+    margin-bottom: 24px;
+  }
+  
+  .desc {
+    font-size: 15px;
+  }
+  
+  .headerCarDetails {
+    margin-bottom: 36px;
+  }
+  
+  .divider {
+    gap: 48px;
+  }
+  
+  .rentalConditionBox h3,
+  .carSpecs h3,
+  .divider h3 {
+    font-size: 16px;
+  }
+  
+  .checklist {
+    gap: 12px;
+  }
+  
+  .specs {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carDetailsContainer {
+    padding: 24px 16px 36px;
+    gap: 24px;
+  }
+  
+  .title {
+    font-size: 18px;
+  }
+  
+  .titleWrapper {
+    gap: 8px;
+  }
+  
+  .meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .price {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  
+  .desc {
+    font-size: 14px;
+  }
+  
+  .divider {
+    gap: 36px;
+  }
+  
+  .item {
+    font-size: 14px;
+  }
+  
+  .specItem {
+    font-size: 14px;
+  }
 }

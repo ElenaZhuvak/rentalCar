@@ -1,9 +1,24 @@
 .container {
     width: 100%;
 }
+
 .loading {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 80vh;
-}   
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .loading {
+        height: 60vh;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .loading {
+        height: 50vh;
+    }
+}

@@ -7,6 +7,7 @@
   background-color: #f2f4f7;
   margin-bottom: 4px;
 }
+
 .logo {
   height: 16px;
   width: 104px;
@@ -16,6 +17,44 @@
   display: flex;
   align-items: center;
   gap: 32px;
-  font-style: 16px;
+  font-size: 16px;
   line-height: 1.25;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .header {
+    padding: 20px 60px;
+  }
+  
+  .nav {
+    gap: 24px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .header {
+    padding: 16px 20px;
+  }
+  
+  .logo {
+    height: 14px;
+    width: 90px;
+  }
+  
+  .nav {
+    gap: 16px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 12px 16px;
+  }
+  
+  .nav {
+    gap: 12px;
+  }
 }

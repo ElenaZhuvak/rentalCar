@@ -14,13 +14,73 @@
 .noCarsBrand {
   padding: 24px;
 }
+
 .noCarsBrandText {
   font-size: 18px;
   color: #101828;
   text-align: center;
   align-items: center;
 }
+
 .loading {
   margin: 80px auto 124px;
   padding: 12px 38px;
+}
+
+/* Desktop */
+@media (max-width: 1440px) {
+  .list {
+    grid-template-columns: repeat(3, minmax(276px, 1fr));
+    padding: 56px 80px;
+  }
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .list {
+    grid-template-columns: repeat(2, minmax(260px, 1fr));
+    gap: 40px 24px;
+    padding: 40px 60px;
+  }
+  
+  .loading {
+    margin: 60px auto 80px;
+  }
+}
+
+/* Mobile Large */
+@media (max-width: 768px) {
+  .list {
+    grid-template-columns: repeat(2, minmax(240px, 1fr));
+    gap: 32px 16px;
+    padding: 32px 20px;
+  }
+  
+  .noCarsBrandText {
+    font-size: 16px;
+  }
+  
+  .loading {
+    margin: 40px auto 60px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .list {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 24px 16px;
+    justify-items: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .list {
+    padding: 20px 12px;
+  }
+  
+  .loading {
+    margin: 32px auto 48px;
+  }
 }

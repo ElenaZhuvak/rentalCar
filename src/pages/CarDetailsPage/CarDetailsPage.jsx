@@ -70,22 +70,20 @@ const CarDetailsPage = () => {
   return (
     <main>
       <div className={css.carDetailsContainer}>
-        <div className={css.carFormDetails}>
+        <div className={css.imageWrapper}>
           <img className={css.carImageDetails} src={img} alt={description} />
-  
-          <BookingForm />
         </div>
-  
+
         <article className={css.car}>
           <header className={css.headerCarDetails}>
             <div className={css.titleWrapper}>
               <h2 className={css.title}>
                 {brand} {model}, {year}
               </h2>
-  
+
               <span className={css.id}>Id: {imgId}</span>
             </div>
-  
+
             <p className={css.meta}>
               <span className={css.location}>
                 <svg
@@ -99,15 +97,15 @@ const CarDetailsPage = () => {
                 </svg>
                 {location}
               </span>
-  
+
               <span className={css.mileage}>Mileage: {mileageFormatted} km</span>
             </p>
-  
+
             <p className={css.price}>${rentalPrice}</p>
-  
+
             <p className={css.desc}>{description}</p>
           </header>
-  
+
           <div className={css.divider}>
             <section
               aria-labelledby="rental-conditions"
@@ -225,6 +223,10 @@ const CarDetailsPage = () => {
             </section>
           </div>
         </article>
+
+        <div className={css.formWrapper}>
+          <BookingForm />
+        </div>
       </div>
     </main>
   );
