@@ -100,6 +100,7 @@ const BookingForm = () => {
               Send
             </button>
             <ToastContainer
+            className={css.toast}
               position="bottom-center"
               autoClose={5000}
               hideProgressBar={false}
