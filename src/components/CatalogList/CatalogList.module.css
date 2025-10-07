@@ -1,12 +1,3 @@
-.list {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(276px, 1fr));
-  gap: 48px 32px;
-  list-style: none;
-  justify-content: center;
-  padding: 56px 120px;
-}
-
 .loader {
   margin: 20px auto;
 }
@@ -30,17 +21,21 @@
 /* Desktop */
 @media (max-width: 1440px) {
   .list {
-    grid-template-columns: repeat(3, minmax(276px, 1fr));
-    padding: 56px 80px;
-  }
+  display: grid;
+  grid-template-columns: repeat(4, minmax(276px, 1fr));
+  gap: 48px 32px;
+  list-style: none;
+  justify-content: center;
+  padding: 56px 120px;
+}
 }
 
 /* Tablet */
 @media (max-width: 1024px) {
   .list {
-    grid-template-columns: repeat(2, minmax(260px, 1fr));
+    grid-template-columns: repeat(3, minmax(276px, 1fr));
     gap: 40px 24px;
-    padding: 40px 60px;
+    padding: 56px 80px;
   }
   
   .loading {

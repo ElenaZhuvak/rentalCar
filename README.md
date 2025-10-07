@@ -2,7 +2,7 @@
 
 A modern, responsive web application for browsing and booking rental cars. Built with React, Redux, and featuring an intuitive interface with advanced filtering capabilities.
 
-![Car Rental Preview](./preview.png)
+![Car Rental Preview](./src/assets/preview.jpg)
 
 ## 🌟 Features
 
@@ -107,7 +107,7 @@ car-rental-service/
 │   ├── redux/              # Redux store and slices
 │   │   ├── brands/         # Brands state
 │   │   ├── cars/           # Cars state
-│   │   ├── favourite/      # Favorites state
+│   │   ├── favourite/      # Favourites state
 │   │   ├── filters/        # Filters state
 │   │   └── store.js        # Redux store configuration
 │   ├── services/           # API services
@@ -245,12 +245,10 @@ VITE_API_BASE_URL=https://car-rental-api.goit.global
 ![Home Page](./src/assets/homePage.jpg)
 
 ### Catalog with Filters
-![Catalog](./src/assets/catalog&filters.jpg)
+![Catalog](./src/assets/catalog_&_filter.jpg)
 
 ### Car Details with Booking
-![Car Details](./src/assets/carDetails.jpg)
-![Booking Form](./src/assets/bookingForm.jpg)
-
+![Car Details & Booking Form](./src/assets/carDetails_&_bookingForm.jpg)
 ---
 
 **⭐ If you like this project, please give it a star on GitHub!**
