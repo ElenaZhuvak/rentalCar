@@ -204,6 +204,23 @@ The project uses **CSS Modules** for component-scoped styling:
 3. **Lazy Loading** - Code splitting with React.lazy()
 4. **Image Optimization** - Lazy loading images with `loading="lazy"`
 
+
+## ⚡ Performance
+
+The application achieves excellent performance scores on [PageSpeed Insights](https://pagespeed.web.dev/):
+
+Mobile:
+- **Performance**: 90+ ⚡
+- **Accessibility**: 90+ ♿
+- **Best Practices**: 100 ✅
+- **SEO**: 90+ 🔍
+
+Desktop:
+- **Performance**: 99 ⚡
+- **Accessibility**: 90+ ♿
+- **Best Practices**: 100 ✅
+- **SEO**: 90+ 🔍
+
 ## 🔐 Environment Variables
 
 Create a `.env` file in the root directory:
